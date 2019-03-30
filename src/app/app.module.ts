@@ -10,6 +10,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { SnacksComponent } from './snacks/snacks.component';
 import { WondersComponent } from './wonders/wonders.component';
 import { HomeComponent } from './home/home.component';
+import { ServerModule } from '@angular/platform-server';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    ServerModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

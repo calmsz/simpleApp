@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center" class="header middle">
   <h1>
-    <a href="/home">
+    <a [routerLink]="['/home']" routerLinkActive="active">
       <span class="middle">
         Simple application
         <img width="100" alt="Search our categories and get the best local stores using a simple application" src="../assets/jpgs/glovo_400x400.jpg">
@@ -12,16 +12,16 @@
 <h2>Our categories </h2>
 <ul>
   <li>
-    <h2><a rel="noopener" href="/gifts">Gifts</a></h2>
+    <h2><a rel="noopener" [routerLink]="['/gifts']" routerLinkActive="active">Gifts</a></h2>
   </li>
   <li>
-    <h2><a rel="noopener" href="/restaurants">Restaurants</a></h2>
+    <h2><a rel="noopener" [routerLink]="['/restaurants']" routerLinkActive="active">Restaurants</a></h2>
   </li>
   <li>
-    <h2><a rel="noopener" href="/snacks">Snacks</a></h2>
+    <h2><a rel="noopener" [routerLink]="['/snacks']" routerLinkActive="active">Snacks</a></h2>
   </li>
   <li>
-    <h2><a rel="noopener" href="/wonders">Wonders</a></h2>
+    <h2><a rel="noopener" [routerLink]="['/wonders']" routerLinkActive="active">Wonders</a></h2>
   </li>
 </ul>
 
