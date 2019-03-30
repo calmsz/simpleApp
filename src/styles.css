@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: honeydew;
+}
+
+.header {
+  background-color: #fed42a;
+}
+
+a {
+  text-decoration: none;
+  color: #00bb86;
+}
+
+.middle > * {
+  vertical-align: middle;
+}

@@ -5,10 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { GiftsComponent } from './gifts/gifts.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { SnacksComponent } from './snacks/snacks.component';
+import { WondersComponent } from './wonders/wonders.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GiftsComponent,
+    RestaurantsComponent,
+    SnacksComponent,
+    WondersComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
