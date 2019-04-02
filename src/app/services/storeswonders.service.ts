@@ -1,12 +1,12 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Storeswonders } from '../models/storeswonders';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Storesgifts } from '../models/storesgifts';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StoresgiftsService {
-  url = 'http://localhost:3000/stores?category=gifts';
+export class StoreswondersService {
+  url = 'http://localhost:3000/stores?category=wonders';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
@@ -17,6 +17,6 @@ export class StoresgiftsService {
   constructor(private httpClient: HttpClient) {}
 
   getStores() {
-    return this.httpClient.get<Storesgifts[]>(`${this.url}`, this.httpOptions);
+    return this.httpClient.get<Storeswonders[]>(`${this.url}`, this.httpOptions);
   }
 }

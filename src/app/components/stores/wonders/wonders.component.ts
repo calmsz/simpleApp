@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StoreswondersService } from 'src/app/services/storeswonders.service';
+import { Storeswonders } from 'src/app/models/storeswonders';
 
 @Component({
   selector: 'app-wonders',
@@ -10,10 +12,14 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class WondersComponent implements OnInit {
+  storesWondersUniverse: Storeswonders[];
 
-  constructor() { }
+  constructor(private service: StoreswondersService) { }
 
   ngOnInit() {
+    this.service.getStores().subscribe((data) => {
+      this.storesWondersUniverse = data;
+    });
   }
 
 }
