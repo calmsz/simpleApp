@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoresgiftsService } from '../../../services/storesgifts.service';
-import { Storesgifts } from 'src/app/models/storesgifts';
-import { Storeavailability } from 'src/app/helpers/storeavailability';
+import { Storesgifts } from '../../../../app/models/storesgifts';
+import { Storeavailability } from '../../../../app/helpers/storeavailability';
 
 @Component({
   selector: 'app-gifts',

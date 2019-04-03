@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StoresrestaurantsService } from 'src/app/services/storesrestaurants.service';
-import { Storesrestaurants } from 'src/app/models/storesrestaurants';
-import { Storeavailability } from 'src/app/helpers/storeavailability';
+import { StoresrestaurantsService } from '../../../../app/services/storesrestaurants.service';
+import { Storesrestaurants } from '../../../../app/models/storesrestaurants';
+import { Storeavailability } from '../../../../app/helpers/storeavailability';
 
 @Component({
   selector: 'app-restaurants',

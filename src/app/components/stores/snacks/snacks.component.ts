@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Storessnacks } from 'src/app/models/storessnacks';
-import { StoressnacksService } from 'src/app/services/storessnacks.service';
-import { Storeavailability } from 'src/app/helpers/storeavailability';
+import { Storessnacks } from '../../../../app/models/storessnacks';
+import { StoressnacksService } from '../../../../app/services/storessnacks.service';
+import { Storeavailability } from '../../../../app/helpers/storeavailability';
 
 @Component({
   selector: 'app-snacks',

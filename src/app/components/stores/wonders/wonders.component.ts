@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreswondersService } from 'src/app/services/storeswonders.service';
-import { Storeswonders } from 'src/app/models/storeswonders';
-import { Storeavailability } from 'src/app/helpers/storeavailability';
+import { StoreswondersService } from '../../../../app/services/storeswonders.service';
+import { Storeswonders } from '../../../../app/models/storeswonders';
+import { Storeavailability } from '../../../../app/helpers/storeavailability';
 
 @Component({
   selector: 'app-wonders',

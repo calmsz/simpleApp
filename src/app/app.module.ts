@@ -29,7 +29,7 @@ import { StorelistComponent } from './components/stores/storelist/storelist.comp
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     AppRoutingModule,
-    // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [Storeavailability],
   bootstrap: [AppComponent]

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Categories } from 'src/app/models/categories';
-import { CategoriesService } from 'src/app/services/categories.service';
-import { Storesgifts } from 'src/app/models/storesgifts';
-import { Storesrestaurants } from 'src/app/models/storesrestaurants';
-import { Storessnacks } from 'src/app/models/storessnacks';
-import { Storeswonders } from 'src/app/models/storeswonders';
-import { Storeavailability } from 'src/app/helpers/storeavailability';
+import { Categories } from '../../../app/models/categories';
+import { CategoriesService } from '../../../app/services/categories.service';
+import { Storesgifts } from '../../../app/models/storesgifts';
+import { Storesrestaurants } from '../../../app/models/storesrestaurants';
+import { Storessnacks } from '../../../app/models/storessnacks';
+import { Storeswonders } from '../../../app/models/storeswonders';
+import { Storeavailability } from '../../../app/helpers/storeavailability';
 
 @Component({
   selector: 'app-home',
