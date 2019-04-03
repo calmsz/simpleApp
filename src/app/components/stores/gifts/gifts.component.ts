@@ -22,14 +22,13 @@ export class GiftsComponent implements OnInit {
       this.storesGiftsUniverse.map((store) => {
         const message = (this.storeAvailability.isOpen(store)) ?
           'Open right now' :
-          this.storeAvailability.nextDayOpen(store)
-        this.storesDisplayInfo.push ({
-          store,
-          message,
-        });
+          this.storeAvailability.nextDayOpen(store);
+        this.storesDisplayInfo.push ({store, message});
       });
 
-
+      this.storesDisplayInfo.sort((a, b) => {
+        return (a.message >= b.message) ? -1 : 1;
+      });
       this.storesGiftsUniverseLoaded = Promise.resolve(true);
     });
   }

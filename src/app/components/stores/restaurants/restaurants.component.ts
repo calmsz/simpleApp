@@ -1,24 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { StoresrestaurantsService } from 'src/app/services/storesrestaurants.service';
 import { Storesrestaurants } from 'src/app/models/storesrestaurants';
+import { Storeavailability } from 'src/app/helpers/storeavailability';
 
 @Component({
   selector: 'app-restaurants',
-  template: `
-    <p>
-      restaurants works!
-    </p>
-  `,
+  templateUrl: './restaurants.component.html',
   styles: []
 })
 export class RestaurantsComponent implements OnInit {
   storesRestaurantsUniverse: Storesrestaurants[];
+  storesDisplayInfo = new Array();
+  storesRestaurantsUniverseLoaded: Promise<boolean>;
 
-  constructor(private service: StoresrestaurantsService) { }
+  constructor(private service: StoresrestaurantsService, private storeAvailability: Storeavailability) { }
 
   ngOnInit() {
     this.service.getStores().subscribe((data) => {
-      this.storesRestaurantsUniverse = data;
+      this.storesRestaurantsUniverse = data.stores;
+
+      this.storesRestaurantsUniverse.map((store) => {
+        const message = (this.storeAvailability.isOpen(store)) ?
+          'Open right now' :
+          this.storeAvailability.nextDayOpen(store);
+        this.storesDisplayInfo.push ({store, message});
+      });
+
+      this.storesDisplayInfo.sort((a, b) => {
+        return (a.message >= b.message) ? -1 : 1;
+      });
+      this.storesRestaurantsUniverseLoaded = Promise.resolve(true);
     });
   }
 

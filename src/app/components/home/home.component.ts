@@ -23,10 +23,10 @@ export class HomeComponent implements OnInit {
 
   storesImagesSrcLoaded: Promise<boolean>;
 
-  giftsCategorySleep = true;
-  restaurantsCategorySleep = true;
-  snacksCategorySleep = true;
-  wondersCategorySleep = true;
+  giftsCategoryOpen = true;
+  restaurantsCategoryOpen = true;
+  snacksCategoryOpen = true;
+  wondersCategoryOpen = true;
   storesImagesSrc = {
     gifts: {open: '', sleep: ''},
     restaurants: {open: '', sleep: ''},
@@ -54,10 +54,10 @@ export class HomeComponent implements OnInit {
   }
 
   showInfo(): void {
-    this.giftsCategorySleep = this.categoriesUniverse.gifts.some(this.storeAvailability.isOpen);
-    this.restaurantsCategorySleep = this.categoriesUniverse.restaurants.some(this.storeAvailability.isOpen);
-    this.snacksCategorySleep = this.categoriesUniverse.snacks.some(this.storeAvailability.isOpen);
-    this.wondersCategorySleep = this.categoriesUniverse.wonders.some(this.storeAvailability.isOpen);
+    this.giftsCategoryOpen = this.categoriesUniverse.gifts.some(this.storeAvailability.isOpen);
+    this.restaurantsCategoryOpen = this.categoriesUniverse.restaurants.some(this.storeAvailability.isOpen);
+    this.snacksCategoryOpen = this.categoriesUniverse.snacks.some(this.storeAvailability.isOpen);
+    this.wondersCategoryOpen = this.categoriesUniverse.wonders.some(this.storeAvailability.isOpen);
   }
 
 }

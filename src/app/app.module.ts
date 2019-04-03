@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ServerModule } from '@angular/platform-server';
 import { HttpClientModule } from '@angular/common/http';
 import { Storeavailability } from './helpers/storeavailability';
+import { StorelistComponent } from './components/stores/storelist/storelist.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { Storeavailability } from './helpers/storeavailability';
     RestaurantsComponent,
     SnacksComponent,
     WondersComponent,
-    HomeComponent
+    HomeComponent,
+    StorelistComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

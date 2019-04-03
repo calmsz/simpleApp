@@ -1,3 +1,4 @@
+import { Schedules } from '../models/schedules';
 
 export class Storeavailability {
   ourDays = {
@@ -22,7 +23,7 @@ export class Storeavailability {
 
   es6Days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
   TODAY = this.ourDays[this.es6Days[new Date().getDay()]];
-  NEXTDAYOPEN = 0;
+  NEXTDAYOPEN: Schedules;
 
   currentYear = new Date().getFullYear();
   currentMonth = new Date().getMonth();
@@ -38,15 +39,20 @@ export class Storeavailability {
   storeCloseTime: any;
 
   isOpen = (store) => {
-    if (!!!store.schedule[this.TODAY]) {
+    const scheduleDay = store.schedule.find((element) => {
+      return element.day === this.TODAY;
+    });
+
+    if (!!!scheduleDay) {
       return false;
     }
-    this.storeOpenHour = store.schedule[this.TODAY].open.split(':')[0];
-    this.storeOpenMinutes = store.schedule[this.TODAY].open.split(':')[1];
+
+    this.storeOpenHour = scheduleDay.open.split(':')[0];
+    this.storeOpenMinutes = scheduleDay.open.split(':')[1];
     this.storeOpenTime = new Date(this.currentYear, this.currentMonth, this.currentDay, this.storeOpenHour, this.storeOpenMinutes, 0, 0);
 
-    this.storeCloseHour = store.schedule[this.TODAY].close.split(':')[0];
-    this.storeCloseMinutes = store.schedule[this.TODAY].close.split(':')[1];
+    this.storeCloseHour = scheduleDay.close.split(':')[0];
+    this.storeCloseMinutes = scheduleDay.close.split(':')[1];
     this.storeCloseTime = new Date(this.currentYear, this.currentMonth, this.currentDay, this.storeCloseHour, this.storeCloseMinutes, 0, 0);
 
     return (this.storeCloseTime > this.currentTimeToCompare) && (this.storeOpenTime < this.currentTimeToCompare);
@@ -56,7 +62,10 @@ export class Storeavailability {
     this.NEXTDAYOPEN = store.schedule.find((element) => {
         return ((element.day > this.TODAY) || (element.day >= 0));
     });
-    return `Next opening time: ${this.ourDaysReverse[this.NEXTDAYOPEN.day]} at ${this.NEXTDAYOPEN.open}`;
+    const outputMessage = (!!this.NEXTDAYOPEN) ?
+      `Next opening time: ${this.ourDaysReverse[this.NEXTDAYOPEN.day]} at ${this.NEXTDAYOPEN.open}` :
+      `Store is closed`;
+    return outputMessage;
   }
 
 }
