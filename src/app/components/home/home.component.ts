@@ -5,49 +5,38 @@ import { Storesgifts } from 'src/app/models/storesgifts';
 import { Storesrestaurants } from 'src/app/models/storesrestaurants';
 import { Storessnacks } from 'src/app/models/storessnacks';
 import { Storeswonders } from 'src/app/models/storeswonders';
-import { Schedules } from 'src/app/models/schedules';
+import { Storeavailability } from 'src/app/helpers/storeavailability';
 
 @Component({
   selector: 'app-home',
-  template: `
-    <p>
-      home works!
-    </p>
-  `,
+  templateUrl: './home.component.html',
   styles: []
 })
 export class HomeComponent implements OnInit {
   categoriesUniverse = {
-    info: new Array(Categories),
+    info: {categories: new Array(Categories)},
     gifts: new Array(Storesgifts),
     restaurants: new Array(Storesrestaurants),
     snacks: new Array(Storessnacks),
     wonders: new Array(Storeswonders),
   };
-  ourDays = {
-    MONDAY: 0,
-    TUESDAY: 1,
-    WEDNESDAY: 2,
-    THURSDAY: 3,
-    FRIDAY: 4,
-    SATURDAY: 5,
-    SUNDAY: 6,
+
+  storesImagesSrcLoaded: Promise<boolean>;
+
+  giftsCategorySleep = true;
+  restaurantsCategorySleep = true;
+  snacksCategorySleep = true;
+  wondersCategorySleep = true;
+  storesImagesSrc = {
+    gifts: {open: '', sleep: ''},
+    restaurants: {open: '', sleep: ''},
+    snacks: {open: '', sleep: ''},
+    wonders: {open: '', sleep: ''},
   };
-  es6Days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-  TODAY: number;
 
-  currentYear = new Date().getFullYear();
-  currentMonth = new Date().getMonth();
-  currentDay = new Date().getDay();
-  currentHour = new Date().getHours();
-  currentMinutes = new Date().getMinutes();
-  currentTimeToCompare = new Date(this.currentYear, this.currentMonth, this.currentDay, this.currentHour, this.currentMinutes, 0, 0);
-
-  constructor(private service: CategoriesService) { }
+  constructor(private service: CategoriesService, private storeAvailability: Storeavailability) { }
 
   ngOnInit() {
-    this.TODAY = this.ourDays[this.es6Days[new Date().getDay()]];
-
     this.service.getCategoriesAndStores().subscribe(CategoriesAndStores => {
       this.categoriesUniverse.info = CategoriesAndStores[0];
       this.categoriesUniverse.gifts = CategoriesAndStores[1].stores;
@@ -55,33 +44,20 @@ export class HomeComponent implements OnInit {
       this.categoriesUniverse.snacks = CategoriesAndStores[3].stores;
       this.categoriesUniverse.wonders = CategoriesAndStores[4].stores;
 
+      this.categoriesUniverse.info.categories.map((category) => {
+          this.storesImagesSrc[`${category.name}`].open = category.openIcon;
+          this.storesImagesSrc[`${category.name}`].sleep = category.sleepIcon;
+        });
+      this.storesImagesSrcLoaded = Promise.resolve(true);
       this.showInfo();
   });
   }
 
   showInfo(): void {
-
-    let giftCategorySleep = this.categoriesUniverse['gifts'].some(this.atLeastOneOpen);
-    console.log(this.categoriesUniverse['gifts'], giftCategorySleep);
+    this.giftsCategorySleep = this.categoriesUniverse.gifts.some(this.storeAvailability.isOpen);
+    this.restaurantsCategorySleep = this.categoriesUniverse.restaurants.some(this.storeAvailability.isOpen);
+    this.snacksCategorySleep = this.categoriesUniverse.snacks.some(this.storeAvailability.isOpen);
+    this.wondersCategorySleep = this.categoriesUniverse.wonders.some(this.storeAvailability.isOpen);
   }
-
-
-  atLeastOneOpen = (store) => {
-    if (!!!store.schedule[this.TODAY]) {
-      return false;
-    }
-    const storeOpenHour = store.schedule[this.TODAY].open.split(':')[0];
-    const storeOpenMinutes = store.schedule[this.TODAY].open.split(':')[1];
-    const storeOpenTime = new Date(this.currentYear, this.currentMonth, this.currentDay, storeOpenHour, storeOpenMinutes, 0, 0);
-
-    const storeCloseHour = store.schedule[this.TODAY].close.split(':')[0];
-    const storeCloseMinutes = store.schedule[this.TODAY].close.split(':')[1];
-    const storeCloseTime = new Date(this.currentYear, this.currentMonth, this.currentDay, storeCloseHour, storeCloseMinutes, 0, 0);
-
-    return (storeCloseTime > this.currentTimeToCompare) && (storeOpenTime < this.currentTimeToCompare);
-  }
-
-
-
 
 }

@@ -1,5 +1,14 @@
-
-
-    <p>
-      gifts works 2!
-    </p>
+<div class="center" *ngIf="storesGiftsUniverseLoaded | async">
+  <table>
+    <thead>
+      <th>Store Opens at</th>
+      <th>Store Name</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let giftStore of storesDisplayInfo">
+        <td>{{ giftStore.name }}</td>
+        <td>{{ giftStore.message }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

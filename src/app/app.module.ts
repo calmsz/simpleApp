@@ -12,6 +12,7 @@ import { WondersComponent } from './components/stores/wonders/wonders.component'
 import { HomeComponent } from './components/home/home.component';
 import { ServerModule } from '@angular/platform-server';
 import { HttpClientModule } from '@angular/common/http';
+import { Storeavailability } from './helpers/storeavailability';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [Storeavailability],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

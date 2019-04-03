@@ -1,0 +1,45 @@
+
+<div class="center" *ngIf="storesImagesSrcLoaded | async">
+  <div class="row">
+    <div class="column">
+      <a rel="noopener" [routerLink]="['/gifts']" routerLinkActive="active">
+        <ng-container *ngIf="giftsCategorySleep; else elseTemplate1">
+            <img src="{{storesImagesSrc.gifts.sleep}}">
+        </ng-container>
+        <ng-template #elseTemplate1>
+            <img src="{{storesImagesSrc.gifts.open}}">
+        </ng-template>
+      </a>
+    </div>
+    <div class="column">
+      <a rel="noopener" [routerLink]="['/restaurants']" routerLinkActive="active">
+        <ng-container *ngIf="restaurantsCategorySleep; else elseTemplate2">
+            <img src="{{storesImagesSrc['restaurants'].sleep}}">
+        </ng-container>
+        <ng-template #elseTemplate2>
+            <img src="{{storesImagesSrc['restaurants'].open}}">
+        </ng-template>
+      </a>
+    </div>
+    <div class="column">
+      <a rel="noopener" [routerLink]="['/snacks']" routerLinkActive="active">
+        <ng-container *ngIf="snacksCategorySleep; else elseTemplate3">
+            <img src="{{storesImagesSrc['snacks'].sleep}}">
+        </ng-container>
+        <ng-template #elseTemplate3>
+            <img src="{{storesImagesSrc['snacks'].open}}">
+        </ng-template>
+      </a>
+    </div>
+    <div class="column">
+      <a rel="noopener" [routerLink]="['/wonders']" routerLinkActive="active">
+        <ng-container *ngIf="wondersCategorySleep; else elseTemplate4">
+            <img src="{{storesImagesSrc.wonders.sleep}}">
+        </ng-container>
+        <ng-template #elseTemplate4>
+            <img src="{{storesImagesSrc.wonders.open}}">
+        </ng-template>
+      </a>
+    </div>
+  </div>
+</div>

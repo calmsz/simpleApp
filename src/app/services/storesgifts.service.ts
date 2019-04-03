@@ -17,6 +17,6 @@ export class StoresgiftsService {
   constructor(private httpClient: HttpClient) {}
 
   getStores() {
-    return this.httpClient.get<Storesgifts[]>(`${this.url}`, this.httpOptions);
+    return this.httpClient.get<{stores: Storesgifts[]}>(`${this.url}`, this.httpOptions);
   }
 }
